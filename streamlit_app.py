@@ -46,7 +46,7 @@ if 'Sub_Category' in df.columns:
 
 st.write("### (2)")
     # Create a multiselect with the unique sub-categories
-    selected_sub_categories = st.multiselect(
+selected_sub_categories = st.multiselect(
         "Select sub-categories:",
         sub_categories
     )
