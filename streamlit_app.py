@@ -59,11 +59,11 @@ if selected_sub_categories:
  filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
 
         # Aggregate sales by month for the filtered data
-        sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
- st.write("### (3)")       
+sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
+st.write("### (3)")       
 
         # Display the line chart of sales for the selected sub-categories
-        st.line_chart(sales_by_month_filtered, y="Sales")
+st.line_chart(sales_by_month_filtered, y="Sales")
 else:
     st.write("Error: 'Sub-Category' column not found in the dataset.")
 
