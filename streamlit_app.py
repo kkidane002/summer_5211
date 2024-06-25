@@ -92,8 +92,3 @@ else:
 
 
 
-
-
-
-
-st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
