@@ -30,6 +30,27 @@ st.line_chart(sales_by_month, y="Sales")
 
 st.write("Addition Below")
 
+# Extract unique categories from the 'Category' column
+categories = df['Category'].unique()
+
+# Create a selectbox with the unique categories
+selected_category = st.selectbox(
+    "Select a category:",
+    categories
+    )
+# Check if 'Sub-Category' column exists
+if 'Sub_Category' in df.columns:
+    # Extract unique sub-categories based on the selected category
+    sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
+
+    # Create a multiselect with the unique sub-categories
+    selected_sub_categories = st.multiselect(
+        "Select sub-categories:",
+        sub_categories
+    )
+
+    # Display the selected sub-categories
+    st.write("You selected:", selected_sub_categories)
 
 
 
