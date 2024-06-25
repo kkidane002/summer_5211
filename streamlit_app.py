@@ -87,8 +87,6 @@ else:
     st.write("Error: 'Sub-Category' column not found in the dataset.")
 
 
-else:
-    st.write("Error: 'Sub-Category' column not found in the dataset.")    
 
 
 
