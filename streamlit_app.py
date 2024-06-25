@@ -30,7 +30,7 @@ st.line_chart(sales_by_month, y="Sales")
 
 st.write("Addition Below")
 
-st.write("### Part: (1)")
+
 # Extract unique categories from the 'Category' column
 categories = df['Category'].unique()
 
@@ -40,9 +40,9 @@ selected_category = st.selectbox(
     categories
     )
 # Check if 'Sub-Category' column exists
-if 'Sub-Category' in df.columns:
+if 'Sub_Category' in df.columns:
     # Extract unique sub-categories based on the selected category
-    sub_categories = df[df['Category'] == selected_category]['Sub-Category'].unique()
+    sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 
     # Create a multiselect with the unique sub-categories
     selected_sub_categories = st.multiselect(
@@ -55,7 +55,7 @@ if 'Sub-Category' in df.columns:
 
     # Filter data for the selected sub-categories
     if selected_sub_categories:
-        filtered_data = df[df['Sub-Category'].isin(selected_sub_categories)]
+        filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
 
         # Aggregate sales by month for the filtered data
         sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
