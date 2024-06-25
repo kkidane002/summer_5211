@@ -44,6 +44,7 @@ if 'Sub_Category' in df.columns:
     # Extract unique sub-categories based on the selected category
     sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 
+st.write("### (2)")
     # Create a multiselect with the unique sub-categories
     selected_sub_categories = st.multiselect(
         "Select sub-categories:",
@@ -59,6 +60,7 @@ if 'Sub_Category' in df.columns:
 
         # Aggregate sales by month for the filtered data
         sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
+ st.write("### (3)")       
 
         # Display the line chart of sales for the selected sub-categories
         st.line_chart(sales_by_month_filtered, y="Sales")
