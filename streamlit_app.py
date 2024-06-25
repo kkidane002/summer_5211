@@ -40,7 +40,7 @@ selected_category = st.selectbox(
     categories
     )
 # Extract unique sub-categories based on the selected category
-sub_categories = df[df['Category'] == selected_category]['Sub-Category'].unique()
+sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 
 # Create a multiselect with the unique sub-categories
 selected_sub_categories = st.multiselect(
