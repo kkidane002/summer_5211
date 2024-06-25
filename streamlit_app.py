@@ -49,7 +49,7 @@ if 'Sub_Category' in df.columns:
         "Select sub-categories:",
         sub_categories
     )
-
+st.write("### (2)")
     # Display the selected sub-categories
     st.write("You selected:", selected_sub_categories)
 
