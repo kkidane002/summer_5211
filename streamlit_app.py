@@ -51,7 +51,7 @@ if 'Sub_Category' in df.columns:
 
     # Display the selected sub-categories
     st.write("You selected:", selected_sub_categories)
-
+st.title("Data App Assignment, on June 20th")
 # Filter data for the selected sub-categories
     if selected_sub_categories:
         filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
