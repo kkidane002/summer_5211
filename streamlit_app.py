@@ -35,11 +35,40 @@ st.write("### (1) add a drop down for Category (https://docs.streamlit.io/librar
 categories = df['Category'].unique()
 
 # Create a selectbox with the unique categories
-option = st.selectbox(
+selected_category = st.selectbox(
     "Select a category:",
     categories
+    )
+# Filter the dataframe based on the selected category
+filtered_df = df[df['Category'] == selected_category]
+
+# Extract unique sub-categories from the filtered dataframe
+sub_categories = filtered_df['Sub-Category'].unique()
+
+# Create a multiselect with the unique sub-categories
+selected_sub_categories = st.multiselect(
+    "Select sub-categories:",
+    sub_categories
 )
-st.write("You selected:", option)
+
+# Filter the dataframe based on the selected sub-categories
+if selected_sub_categories:
+    filtered_df = filtered_df[filtered_df['Sub-Category'].isin(selected_sub_categories)]
+
+# Display the filtered dataframe
+st.dataframe(filtered_df)
+
+# Aggregation and plotting based on the filtered dataframe
+if not filtered_df.empty:
+    st.write("### Sales by Selected Sub-Categories")
+    st.bar_chart(filtered_df.groupby("Sub-Category", as_index=False).sum(), x="Sub-Category", y="Sales", color="#04f")
+
+    # Aggregate sales by month for the selected sub-categories
+    sales_by_month_filtered = filtered_df.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
+    st.write("### Sales by Month for Selected Sub-Categories")
+    st.line_chart(sales_by_month_filtered, y="Sales")
+else:
+    st.write("No data available for the selected sub-categories.")
 st.write("### (2) add a multi-select for Sub_Category *in the selected Category (1)* (https://docs.streamlit.io/library/api-reference/widgets/st.multiselect)")
 st.write("### (3) show a line chart of sales for the selected items in (2)")
 st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
