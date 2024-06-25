@@ -30,7 +30,7 @@ st.line_chart(sales_by_month, y="Sales")
 
 st.write("Addition Below")
 
-st.write('### (1)")
+st.write("### (1)")
 # Extract unique categories from the 'Category' column
 categories = df['Category'].unique()
 
