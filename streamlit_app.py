@@ -72,6 +72,21 @@ if 'Sub_Category' in df.columns:
         st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
         st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
         st.metric(label="Overall Profit Margin (%)", value=f"{overall_profit_margin:.2f}%")
+    # Calculate overall average profit margin
+        total_sales_all = df['Sales'].sum()
+        total_profit_all = df['Profit'].sum()
+        overall_profit_margin_all = (total_profit_all / total_sales_all) * 100 if total_sales_all > 0 else 0
+
+        # Calculate delta
+        delta = overall_profit_margin - overall_profit_margin_all
+
+        # Display metrics
+        st.write("### (5)")
+        st.metric(label="Overall Profit Margin (%)", value=f"{overall_profit_margin:.2f}%", delta=f"{delta:.2f}%")
+else:
+    st.write("Error: 'Sub-Category' column not found in the dataset.")
+
+
 else:
     st.write("Error: 'Sub-Category' column not found in the dataset.")    
 
@@ -82,5 +97,5 @@ else:
 
 
 
-st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
+
 st.write("### (5) use the delta option in the overall profit margin metric to show the difference between the overall average profit margin (all products across all categories)")
