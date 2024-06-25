@@ -67,7 +67,7 @@ if 'Sub_Category' in df.columns:
         total_sales = filtered_data['Sales'].sum()
         total_profit = filtered_data['Profit'].sum()
         overall_profit_margin = (total_profit / total_sales) * 100 if total_sales > 0 else 0
-        st.write("### (3)")
+        st.write("### (4)")
         # Display metrics
         st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
         st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
