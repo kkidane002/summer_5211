@@ -52,11 +52,11 @@ selected_sub_categories = st.multiselect(
     )
 
     # Display the selected sub-categories
-    st.write("You selected:", selected_sub_categories)
+st.write("You selected:", selected_sub_categories)
 
     # Filter data for the selected sub-categories
-    if selected_sub_categories:
-        filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
+if selected_sub_categories:
+ filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
 
         # Aggregate sales by month for the filtered data
         sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
