@@ -44,17 +44,16 @@ if 'Sub_Category' in df.columns:
     # Extract unique sub-categories based on the selected category
     sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
 
-st.write("### (2)")
     # Create a multiselect with the unique sub-categories
-selected_sub_categories = st.multiselect(
+    selected_sub_categories = st.multiselect(
         "Select sub-categories:",
         sub_categories
     )
 
     # Display the selected sub-categories
-st.write("You selected:", selected_sub_categories)
+    st.write("You selected:", selected_sub_categories)
 
- # Filter data for the selected sub-categories
+    # Filter data for the selected sub-categories
     if selected_sub_categories:
         filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
 
