@@ -60,8 +60,7 @@ if selected_sub_categories:
 
         # Aggregate sales by month for the filtered data
 sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
-st.write("### (3)")       
-
+      
         # Display the line chart of sales for the selected sub-categories
 st.line_chart(sales_by_month_filtered, y="Sales")
 else:
