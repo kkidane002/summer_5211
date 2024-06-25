@@ -40,39 +40,35 @@ selected_category = st.selectbox(
     categories
     )
 # Check if 'Sub-Category' column exists
-if 'Sub_Category' in df.columns:
+if 'Sub-Category' in df.columns:
     # Extract unique sub-categories based on the selected category
-    sub_categories = df[df['Category'] == selected_category]['Sub_Category'].unique()
-    st.write("### Part: (2)")
+    sub_categories = df[df['Category'] == selected_category]['Sub-Category'].unique()
+
     # Create a multiselect with the unique sub-categories
     selected_sub_categories = st.multiselect(
         "Select sub-categories:",
         sub_categories
     )
-    
+
     # Display the selected sub-categories
     st.write("You selected:", selected_sub_categories)
 
     # Filter data for the selected sub-categories
     if selected_sub_categories:
-        filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
+        filtered_data = df[df['Sub-Category'].isin(selected_sub_categories)]
 
         # Aggregate sales by month for the filtered data
         sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
 
-        st.write("### Part: (3)")
         # Display the line chart of sales for the selected sub-categories
         st.line_chart(sales_by_month_filtered, y="Sales")
-    # Calculate metrics
+
+        # Calculate metrics for selected sub-categories
         total_sales = filtered_data['Sales'].sum()
         total_profit = filtered_data['Profit'].sum()
         overall_profit_margin = (total_profit / total_sales) * 100 if total_sales > 0 else 0
-        st.write("### Part: (4)")
-        # Display metrics
-        st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
-        st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
-        st.metric(label="Overall Profit Margin (%)", value=f"{overall_profit_margin:.2f}%")
-    # Calculate overall average profit margin
+
+        # Calculate overall average profit margin
         total_sales_all = df['Sales'].sum()
         total_profit_all = df['Profit'].sum()
         overall_profit_margin_all = (total_profit_all / total_sales_all) * 100 if total_sales_all > 0 else 0
@@ -81,7 +77,8 @@ if 'Sub_Category' in df.columns:
         delta = overall_profit_margin - overall_profit_margin_all
 
         # Display metrics
-        st.write("### Part: (5)")
+        st.metric(label="Total Sales", value=f"${total_sales:,.2f}")
+        st.metric(label="Total Profit", value=f"${total_profit:,.2f}")
         st.metric(label="Overall Profit Margin (%)", value=f"{overall_profit_margin:.2f}%", delta=f"{delta:.2f}%")
 else:
     st.write("Error: 'Sub-Category' column not found in the dataset.")
