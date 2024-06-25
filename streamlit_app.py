@@ -64,7 +64,7 @@ st.write("### (3)")
 
         # Display the line chart of sales for the selected sub-categories
 st.line_chart(sales_by_month_filtered, y="Sales")
-else:
+ else:
     st.write("Error: 'Sub-Category' column not found in the dataset.")
 
 
