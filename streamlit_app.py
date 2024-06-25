@@ -55,7 +55,7 @@ if 'Sub_Category' in df.columns:
 
     # Filter data for the selected sub-categories
     if selected_sub_categories:
-        filtered_data = df[df['Sub-Category'].isin(selected_sub_categories)]
+        filtered_data = df[df['Sub_Category'].isin(selected_sub_categories)]
 
         # Aggregate sales by month for the filtered data
         sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Grouper(freq='M')).sum()
