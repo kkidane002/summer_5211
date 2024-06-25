@@ -59,8 +59,7 @@ sales_by_month_filtered = filtered_data.filter(items=['Sales']).groupby(pd.Group
 
 # Display the line chart of sales for the selected sub-categories
 st.line_chart(sales_by_month_filtered, y="Sales")
-else:
-    st.write("Error: 'Sub-Category' column not found in the dataset.")
+
 
 st.write("### (3) show a line chart of sales for the selected items in (2)")
 st.write("### (4) show three metrics (https://docs.streamlit.io/library/api-reference/data/st.metric) for the selected items in (2): total sales, total profit, and overall profit margin (%)")
